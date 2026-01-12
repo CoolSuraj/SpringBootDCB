@@ -1,6 +1,7 @@
 package com.dcb.SpringBootTutorial.controller;
 
 import com.dcb.SpringBootTutorial.entity.Department;
+import com.dcb.SpringBootTutorial.error.DepartmentNotFoundException;
 import com.dcb.SpringBootTutorial.service.DepartmentService;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Department findDepartmentById(@PathVariable("id")  Long id){
+    public Department findDepartmentById(@PathVariable("id")  Long id) throws DepartmentNotFoundException {
         return  departmentService.findDepartmentId(id);
     }
 

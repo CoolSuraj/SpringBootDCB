@@ -1,6 +1,7 @@
 package com.dcb.SpringBootTutorial.service;
 
 import com.dcb.SpringBootTutorial.entity.Department;
+import com.dcb.SpringBootTutorial.error.DepartmentNotFoundException;
 import com.dcb.SpringBootTutorial.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,18 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department findDepartmentId(Long id) {
-        return departmentRepository.findById(id).get();
+    public Department findDepartmentId(Long id) throws DepartmentNotFoundException {
+
+        Optional<Department> department = departmentRepository.findById(id);
+        if(department.isEmpty()){
+          throw new DepartmentNotFoundException("Department Id Not Found");
+        }
+        return department.get();
     }
 
     @Override
     public void deleteDepartmentById(Long id) {
+
         departmentRepository.deleteById(id);
     }
 

@@ -2,6 +2,7 @@ package com.dcb.SpringBootTutorial.service;
 
 
 import com.dcb.SpringBootTutorial.entity.Department;
+import com.dcb.SpringBootTutorial.error.DepartmentNotFoundException;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public interface DepartmentService {
 
     public List<Department> fetchDeaprtmentList();
 
-    public Department findDepartmentId(Long id);
+    public Department findDepartmentId(Long id) throws DepartmentNotFoundException;
 
    public void deleteDepartmentById(Long id);
 
