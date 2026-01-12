@@ -2,6 +2,7 @@ package com.dcb.SpringBootTutorial.controller;
 
 import com.dcb.SpringBootTutorial.entity.Department;
 import com.dcb.SpringBootTutorial.service.DepartmentService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class DepartmentController {
     private  DepartmentService departmentService;
 
     @PostMapping("/saveDepartment")
-    public Department saveDepartment( @RequestBody Department department){
+    public Department saveDepartment( @Valid  @RequestBody Department department){
 
         return departmentService.saveDepartment(department);
     }
